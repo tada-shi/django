@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0px;
+        box-sizing: border-box;
+        background-color: rgb(183, 218, 183);
+    }
+    .title{
+        position: relative;
+        margin: 2%;
+        padding: 20px;
+        background-color: rgb(85, 107, 47);
+        color: rgb(128, 192, 128);
+        text-transform: uppercase;
+    }
+    #add{
+        padding: 10px;
+        margin: 4px;
+        background-color: white;
+        border-radius: 12px;
+    }
+    form{
+        text-align: center;
+    }
+    .addBtn, .delBtn{
+        background-color: rgb(85, 107, 47);
+        color: white;
+        font-weight: bold;
+        outline: none;
+        border: none;
+        padding: 15px 20px;
+        border-radius: 10px;
+    }
+    .todoList li{
+        text-transform: capitalize;
+        color: rgb(73, 90, 43);
+    }
+    .listDiv{
+        display: flex;
+        margin: 50px;
+    }
+    .delBtn{
+        position: absolute;
+        left: 65%;
+    }
+    li{
+        position: absolute;
+        left: 30%;
+    }
+</style> 
+<body>
+    <header>
+        <h1 class="title">to do app</h1>
+        <form action="addToDo" method="POST">
+            {% csrf_token %}
+            <input type="text" name="text" id="add">
+            <button type="submit" class="addBtn">ADD</button>
+        </form>
+    </header>
+    <ul class="todoList">
+        {% for item in items %}
+        <div class="listDiv">
+            <li><h2>{{item.text}}</h2></li>
+            <form action="delToDo/{{item.id}}/" method="POST">
+                {% csrf_token %}
+            <button type="submit" class="delBtn">DEL</button>
+        </form>
+        </div>
+        {% endfor%}
+    </ul>
+</body>
+</html>
