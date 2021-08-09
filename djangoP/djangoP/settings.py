@@ -138,8 +138,3 @@ MESSAGE_TAGS = {
     messages.ERROR : 'danger'
 }
 
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'sadaf9430.rumi@gmail.com'
-EMAIL_HOST_PASSWORD = 'ruv@3012'
-EMAIL_PORT = 587
