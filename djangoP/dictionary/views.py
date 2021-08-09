@@ -12,9 +12,7 @@ def search(request):
     antonyms = dictionary.antonym(value)
     synonyms = dictionary.synonym(value)
     context = {
-        'Noun' : meaning['Noun'][0],
-        'Verb' : meaning['Verb'][0],
-        'Adjective' : meaning['Adjective'][0],
+        'meaning' : meaning,
         'antonyms': antonyms,
         'synonyms':synonyms
     }

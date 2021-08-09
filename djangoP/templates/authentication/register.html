@@ -28,7 +28,7 @@
               class="form-control form-control-sm"
             />
           </div>
-          <div class="invalid_feedback invalid-feedback" style="display:none">
+          <div class="usernameFeedbackArea invalid-feedback" style="display:none">
           </div>
           <p class="text-sm text-success usernameSuccessOutput"></p>
           <div class="form-group">
@@ -45,6 +45,7 @@
 
           <div class="emailFeedBackArea invalid-feedback" style="display:none">
           </div>
+          <p class="text-sm text-success emailSuccessOutput"></p>
           <div class="form-group">
             <input
               type="password"
@@ -53,9 +54,17 @@
               class="form-control form-control-sm"
               id="passwordField"
             />
-            <small class="float-right py-3 showPasswordToggle">SHOW</small>
           </div>
+          <div class="space"></div>
+          <div>
+          <small class="float-right py-3 showPasswordToggle">SHOW</small>
+          </div>
+          <div class="space"></div>
           <input type="submit" value="Register" class="btn btn-block btn-primary submit-btn" />
+        </form>
+
+        <form action="/authentication/login">
+          <input type="submit" value="Login" class="btn btn-block btn-primary submit-btn" />
         </form>
 
       </div>
@@ -66,31 +75,6 @@
   <div class="col-md-4"></div>
 </div>
 
-<script>
-const usernameField = document.querySelector('#usernameField');
-const feedbackArea = document.querySelector('.invalid-feedback');
-
-usernameField.addEventListener('keyup', (e)=>{
-    const usernameVal = e.target.value;
-
-    usernameField.classList.remove('is-invalid')
-    feedbackArea.style.display = 'none';
-
-    if(usernameVal.length > 0){
-        d = fetch('/authentication/validate-username',
-        {body : JSON.stringify({username : usernameVal}),
-        method : 'POST'}
-        ).then(res => res.json())
-        .then(data => {
-            if(data.username_error){
-                usernameField.classList.add('is-invalid');
-                feedbackArea.style.display = 'block';
-                feedbackArea.innerHTML = `<p>${data.username_error}</p>`
-            }
-        });
-    }
-
-})
-</script>
+<script src="{% static 'js/register.js' %}"></script>
 
 {% endblock content %}

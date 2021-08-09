@@ -25,4 +25,4 @@ urlpatterns = [
     # path('', include('dictionary.urls'))
     path('', include('expensesWeb.urls')),
     path('authentication/', include('authentication.urls')),
-]
+] 
